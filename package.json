@@ -1,0 +1,23 @@
+{
+  "name": "pokemon-tcg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "nodemon --exec 'yarn run run' -e ts",
+    "run": "tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jsdom": "^16.2.13",
+    "axios": "^0.21.1",
+    "discord": "^0.8.2",
+    "discord.js": "^12.5.3",
+    "domparser": "^0.1.1",
+    "dotenv": "^10.0.0",
+    "jsdom": "^16.6.0",
+    "nodemon": "^2.0.12"
+  }
+}
