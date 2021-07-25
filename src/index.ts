@@ -38,6 +38,16 @@ client.on("message", async (message) => {
     case "!players":
       const players: string[] = await getAllPlayers();
       channel.send(players.join(", "));
+      break;
+    case "!help":
+      channel.send(`
+        Commands:
+        !heatmaps: Return map site with access to heat maps and other map data
+        !map: Return basic map image
+        !info: Return basic server info
+        !players: Return current player names
+      `);
+      break;
   }
 });
 
