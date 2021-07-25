@@ -52,8 +52,8 @@ export const getMapUrl = async (
 };
 
 export const getServerInfo = async (): Promise<RustResponse> => {
-  const data = await axios.get("https://api.rust-servers.info/info/5724");
+  const data = await axios.get(
+    `https://api.rust-servers.info/info/${process.env.SERVER_CODE}`
+  );
   return data.data;
 };
-
-// getMapUrl("1601246308", "4500");
