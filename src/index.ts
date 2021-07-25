@@ -2,7 +2,12 @@ import axios from "axios";
 import jsdom from "jsdom";
 import Discord from "discord.js";
 import * as dotenv from "dotenv";
-import { formatMapUrl, getMapUrl, getServerInfo } from "./infoGather";
+import {
+  formatMapUrl,
+  getAllPlayers,
+  getMapUrl,
+  getServerInfo,
+} from "./infoGather";
 dotenv.config();
 const client = new Discord.Client();
 
@@ -30,6 +35,9 @@ client.on("message", async (message) => {
     case "!heatmaps":
       channel.send(formatMapUrl(rustInfo.size, rustInfo.seed) + "#NodeHeatMap");
       break;
+    case "!players":
+      const players: string[] = await getAllPlayers();
+      channel.send(players.join(", "));
   }
 });
 

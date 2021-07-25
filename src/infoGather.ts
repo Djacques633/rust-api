@@ -33,6 +33,12 @@ interface RustResponse {
   wipe_cycle: string;
 }
 
+interface PlayerResponse {
+  name: string;
+  play_time_human: string;
+  play_time_in_seconds: number;
+}
+
 export const formatMapUrl = (size: string, seed: string) => {
   return `https://rustmaps.com/map/${size}_${seed}`;
 };
@@ -56,4 +62,20 @@ export const getServerInfo = async (): Promise<RustResponse> => {
     `https://api.rust-servers.info/info/${process.env.SERVER_CODE}`
   );
   return data.data;
+};
+
+export const getAllPlayers = async (): Promise<string[]> => {
+  const { data } = await axios.get<{ data: PlayerResponse[] }>(
+    `https://api.rust-servers.info/players/${process.env.SERVER_CODE}`
+  );
+  const players: string[] = [];
+  // @ts-ignore
+  data.sort((a, b) =>
+    a.play_time_in_seconds > b.play_time_in_seconds ? 1 : 0
+  );
+  // @ts-ignore
+  data.forEach((player) => {
+    players.push(player.name);
+  });
+  return players;
 };
